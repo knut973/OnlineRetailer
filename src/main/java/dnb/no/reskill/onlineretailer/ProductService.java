@@ -7,6 +7,7 @@ public interface ProductService {
         void updateStock(Product product);
         Product findInStock(int productId);
 
+        double getVat(double price);
 
 
 }

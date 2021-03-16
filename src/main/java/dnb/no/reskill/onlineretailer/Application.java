@@ -2,12 +2,21 @@ package dnb.no.reskill.onlineretailer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
 public class Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        ApplicationContext ctx = SpringApplication.run(Application.class, args);
+
+
+        ProductService service = ctx.getBean(ProductService.class);
+        System.out.println(service.getVat(90.0));
+        System.out.println(service.getVat(150.0));
+        System.out.println(service.getVat(1500.0));
+
+
     }
 
 

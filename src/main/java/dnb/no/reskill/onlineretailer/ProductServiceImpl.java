@@ -4,10 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductRepository repository;
+
+    @Autowired
+    private VatConfig vatrepository;
 
 
     @Override
@@ -33,5 +36,29 @@ public class ProductServiceImpl implements ProductService{
         return repository.findProduct(productId);
     }
 
+    @Override
+    public double getVat(double price) {
 
+
+        MyVatBean a = vatrepository.vatBean25();
+        MyVatBean b = vatrepository.vatBean27();
+        MyVatBean c = vatrepository.vatBean50();
+
+       if (price < 100){
+        return price * a.getPercent();
+
+
+       }
+       if (price >101 && price < 1000){
+           return price * b.getPercent();
+       }
+
+       else{
+           return price * c.getPercent();
+       }
+
+
+
+
+}
 }

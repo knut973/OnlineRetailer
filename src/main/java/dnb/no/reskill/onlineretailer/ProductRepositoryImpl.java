@@ -21,8 +21,8 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public boolean deleteProduct(int productId) {
-        stock.remove(productId);
-        if (!stock.containsKey(productId)){
+        if (stock.containsKey(productId)){
+            stock.remove(productId);
             return true;
         }
         else
