@@ -11,6 +11,7 @@ public interface ProductService {
 
 
         double getVat(double price);
+        void adjustPriceByPercentage(int productId, double byPercent);
 
 
 }

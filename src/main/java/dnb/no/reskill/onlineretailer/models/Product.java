@@ -28,5 +28,9 @@ public class Product {
         return id++;
     }
 
+    public void adjustPriceByPercentage(double percent){
+        price *= 1+ percent/100;
+    }
+
 
 }

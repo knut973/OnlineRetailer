@@ -60,7 +60,13 @@ public class ProductServiceImpl implements ProductService {
        }
 
 
-
-
 }
+    @Override
+    public void adjustPriceByPercentage(int productId, double byPercent) {
+        Product theProduct = repository.findProduct(productId);
+        theProduct.adjustPriceByPercentage(byPercent);
+        repository.updateProduct(theProduct);
+
+    }
+
 }
