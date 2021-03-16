@@ -14,9 +14,9 @@ public class ProductRepositoryImpl implements ProductRepository {
 
 
     @Override
-    public void addProduct(Product product) {
-        stock.put(product.getId(), product);
-        System.out.println("Added to stock");
+    public Product addProduct(Product product) {
+        stock.put(product.setId(), product);
+        return product;
     }
 
     @Override

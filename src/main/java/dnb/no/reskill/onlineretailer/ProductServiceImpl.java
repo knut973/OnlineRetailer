@@ -40,20 +40,18 @@ public class ProductServiceImpl implements ProductService {
     public double getVat(double price) {
 
 
-        MyVatBean a = vatrepository.vatBean25();
-        MyVatBean b = vatrepository.vatBean27();
-        MyVatBean c = vatrepository.vatBean50();
-
        if (price < 100){
-        return price * a.getPercent();
-
+           MyVatBean a = vatrepository.vatBean25();
+           return price * a.getPercent();
 
        }
        if (price >101 && price < 1000){
+           MyVatBean b = vatrepository.vatBean27();
            return price * b.getPercent();
        }
 
        else{
+           MyVatBean c = vatrepository.vatBean50();
            return price * c.getPercent();
        }
 

@@ -24,6 +24,9 @@ public class Product {
         return id;
     }
 
+    public int setId(){
+        return id++;
+    }
 
 
 }
