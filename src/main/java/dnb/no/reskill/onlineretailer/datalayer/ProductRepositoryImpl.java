@@ -1,5 +1,6 @@
-package dnb.no.reskill.onlineretailer;
+package dnb.no.reskill.onlineretailer.datalayer;
 
+import dnb.no.reskill.onlineretailer.models.Product;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
@@ -20,6 +21,11 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
+    public Collection<Product> getAllProducts() {
+        return stock.values();
+    }
+
+    @Override
     public boolean deleteProduct(int productId) {
         if (stock.containsKey(productId)){
             stock.remove(productId);
@@ -31,8 +37,12 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public boolean updateProduct(Product product) {
-        stock.replace(product.getId(), product);
-        return true;
+        if (stock.containsKey(product.getId())){
+            stock.replace(product.getId(), product);
+            return true;
+        }
+        else
+            return false;
     }
 
 

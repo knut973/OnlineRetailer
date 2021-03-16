@@ -1,5 +1,6 @@
 package dnb.no.reskill.onlineretailer;
 
+import dnb.no.reskill.onlineretailer.bizlayer.ProductService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;

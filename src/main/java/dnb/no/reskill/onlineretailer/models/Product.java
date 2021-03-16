@@ -1,4 +1,4 @@
-package dnb.no.reskill.onlineretailer;
+package dnb.no.reskill.onlineretailer.models;
 
 public class Product {
 

@@ -1,5 +1,9 @@
-package dnb.no.reskill.onlineretailer;
+package dnb.no.reskill.onlineretailer.bizlayer;
 
+import dnb.no.reskill.onlineretailer.MyVatBean;
+import dnb.no.reskill.onlineretailer.models.Product;
+import dnb.no.reskill.onlineretailer.datalayer.ProductRepository;
+import dnb.no.reskill.onlineretailer.VatConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

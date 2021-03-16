@@ -1,4 +1,6 @@
-package dnb.no.reskill.onlineretailer;
+package dnb.no.reskill.onlineretailer.bizlayer;
+
+import dnb.no.reskill.onlineretailer.models.Product;
 
 public interface ProductService {
 
@@ -6,6 +8,7 @@ public interface ProductService {
         void deleteFromStock(int productId);
         void updateStock(Product product);
         Product findInStock(int productId);
+
 
         double getVat(double price);
 
