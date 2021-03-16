@@ -14,7 +14,7 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository repository;
 
     @Autowired
-    private VatConfig vatrepository;
+    private VatConfig vatConfig;
 
 
     @Override
@@ -45,17 +45,17 @@ public class ProductServiceImpl implements ProductService {
 
 
        if (price < 100){
-           MyVatBean a = vatrepository.vatBean25();
+           MyVatBean a = vatConfig.vatBean25();
            return price * a.getPercent();
 
        }
        if (price >101 && price < 1000){
-           MyVatBean b = vatrepository.vatBean27();
+           MyVatBean b = vatConfig.vatBean27();
            return price * b.getPercent();
        }
 
        else{
-           MyVatBean c = vatrepository.vatBean50();
+           MyVatBean c = vatConfig.vatBean50();
            return price * c.getPercent();
        }
 
