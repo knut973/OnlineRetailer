@@ -1,20 +1,32 @@
 package dnb.no.reskill.onlineretailer.bizlayer;
 
+import com.sun.xml.bind.v2.TODO;
 import dnb.no.reskill.onlineretailer.MyVatBean;
-import dnb.no.reskill.onlineretailer.models.Product;
 import dnb.no.reskill.onlineretailer.datalayer.ProductRepository;
+import dnb.no.reskill.onlineretailer.datalayer.ProductRepositoryH2Database;
+import dnb.no.reskill.onlineretailer.models.Product;
 import dnb.no.reskill.onlineretailer.VatConfig;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
+import java.util.Collection;
 
 @Service
 public class ProductServiceImpl implements ProductService {
 
+    private final ProductRepository repository;
+
     @Autowired
-    private ProductRepository repository;
+    public ProductServiceImpl(@Qualifier("productRepositoryH2Database") ProductRepository repository){
+        this.repository = repository;
+    }
+
 
     @Autowired
     private VatConfig vatConfig;
+
+//TODO fix vatsetup, autowire to bean
 
 
     @Override
@@ -63,9 +75,6 @@ public class ProductServiceImpl implements ProductService {
 }
     @Override
     public void adjustPriceByPercentage(int productId, double byPercent) {
-        Product theProduct = repository.findProduct(productId);
-        theProduct.adjustPriceByPercentage(byPercent);
-        repository.updateProduct(theProduct);
 
     }
 

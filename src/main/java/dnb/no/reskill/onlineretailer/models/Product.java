@@ -1,15 +1,54 @@
 package dnb.no.reskill.onlineretailer.models;
 
+import javax.persistence.*;
+
+
+@Entity
+@Table(name = "Product")
 public class Product {
 
-    private int id = 1;
+//    public static final int DUMMY_ID = -1;
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+
+    private int id=1;
     private String name;
     private double price;
 
-    public Product(String name, double price){
+    @Column(name = "instock")
+    private long instock;
+
+    public Product(){}
+
+    public Product(String name, double price, long inStock){
         this.name=name;
         this.price=price;
-        this.id=id++;
+        this.instock = inStock;
+    }
+
+//    public static int getDummyId() {
+//        return DUMMY_ID;
+//    }
+
+    public long getInstock() {
+        return instock;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setInstock(long instock) {
+        this.instock = instock;
     }
 
     public String getName() {
@@ -33,4 +72,13 @@ public class Product {
     }
 
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", instock=" + instock +
+                '}';
+    }
 }
