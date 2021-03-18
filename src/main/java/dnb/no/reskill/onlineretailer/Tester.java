@@ -24,6 +24,7 @@ public class Tester {
                 System.out.println("Adding toy car");
                 Product p = new Product("Toycar", 99, 50);
                 repository.addProduct(p);
+                System.out.println("Id of " +p.getName() + ": " +p.getId());
 
                 //find product
                 System.out.println("This is the product just added:");

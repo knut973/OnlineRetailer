@@ -14,15 +14,12 @@ public class Application {
 
         ProductService service = ctx.getBean(ProductService.class);
         Tester service2 = ctx.getBean(Tester.class);
+        
+//
+//        System.out.println(service.getVat(90.0));
+//        System.out.println(service.getVat(150.0));
+//        System.out.println(service.getVat(1500.0));
 
-
-
-        System.out.println(service.getVat(90.0));
-        System.out.println(service.getVat(150.0));
-        System.out.println(service.getVat(1500.0));
-
-
-        System.out.println("now");
         service2.doDemo();
     }
 
