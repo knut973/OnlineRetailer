@@ -2,6 +2,8 @@ package dnb.no.reskill.onlineretailer.bizlayer;
 
 import dnb.no.reskill.onlineretailer.models.Product;
 
+import java.util.Collection;
+
 public interface ProductService {
 
         void addToStock(Product product);
@@ -12,6 +14,7 @@ public interface ProductService {
 
         double getVat(double price);
         void adjustPriceByPercentage(int productId, double byPercent);
+        double getTotalStockValue(Collection<Product> products);
 
 }
 

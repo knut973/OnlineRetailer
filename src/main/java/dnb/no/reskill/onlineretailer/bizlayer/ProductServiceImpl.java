@@ -75,6 +75,22 @@ public class ProductServiceImpl implements ProductService {
 }
     @Override
     public void adjustPriceByPercentage(int productId, double byPercent) {
+        Product prod = repository.findProduct(productId);
+        if (prod == null) {
+            return;
+        }
+        else{
+            prod.adjustPriceByPercentage(byPercent);
+        }
+
+    }
+
+    @Override
+    public double getTotalStockValue(Collection<Product> products) {
+        return repository.getAllProducts()
+                .stream()
+                .mapToDouble(c -> c.getPrice() * c.getInstock())
+                .sum();
 
     }
 

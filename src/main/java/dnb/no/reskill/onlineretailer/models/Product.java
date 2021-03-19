@@ -12,7 +12,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
 
-    private int id=1;
+    private int id = -1;
     private String name;
     private double price;
 
@@ -22,6 +22,11 @@ public class Product {
     public Product(){}
 
     public Product(String name, double price, long inStock){
+        this(-1, name, price, inStock);
+    }
+
+    public Product(int id, String name, double price, long inStock){
+        this.id=id;
         this.name=name;
         this.price=price;
         this.instock = inStock;
@@ -67,8 +72,9 @@ public class Product {
         return id++;
     }
 
-    public void adjustPriceByPercentage(double percent){
+    public double adjustPriceByPercentage(double percent){
         price *= 1+ percent/100;
+        return price;
     }
 
 

@@ -14,7 +14,7 @@ public class Tester {
 
     @Qualifier("productRepositoryH2Database")
     @Autowired
-        private ProductRepository repository;
+    private ProductRepository repository;
 
         public void doDemo() {
 
@@ -26,9 +26,16 @@ public class Tester {
                 repository.addProduct(p);
                 System.out.println("Id of " +p.getName() + ": " +p.getId());
 
+
+                System.out.println("Adding real car, with id -1");
+                Product p10 = new Product(-1, "Realcar", 999, 11);
+                repository.addProduct(p10);
+                System.out.println("Id of " +p10.getName() + ": " +p10.getId());
+
+
                 //find product
                 System.out.println("This is the product just added:");
-                System.out.println(repository.findProduct(7)+"/n");
+                System.out.println(repository.findProduct(p.getId())+"/n");
 
                 //Print all products
                 printAllProducts();
@@ -44,10 +51,10 @@ public class Tester {
                 repository.addProduct(p5);
                 printAllProducts();
 
-                System.out.println("\ndoubling the stock of icecream and increase price");
+                System.out.println("\ndoubling the stock of icecream and increase price by 10%");
                 Product p6 = repository.findProduct(8);
                 p6.setInstock(150);
-                p6.setPrice(30);
+                p6.setPrice(p6.adjustPriceByPercentage(10));
                 repository.updateProduct(p6);
                 System.out.println(repository.findProduct(8));
 
