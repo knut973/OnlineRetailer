@@ -1,6 +1,7 @@
 package dnb.no.reskill.onlineretailer;
 
 import dnb.no.reskill.onlineretailer.bizlayer.ProductService;
+import dnb.no.reskill.onlineretailer.forTesting.Tester;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -15,10 +16,6 @@ public class Application {
         ProductService service = ctx.getBean(ProductService.class);
         Tester service2 = ctx.getBean(Tester.class);
 
-//
-//        System.out.println(service.getVat(90.0));
-//        System.out.println(service.getVat(150.0));
-//        System.out.println(service.getVat(1500.0));
 
         service2.doDemo();
     }

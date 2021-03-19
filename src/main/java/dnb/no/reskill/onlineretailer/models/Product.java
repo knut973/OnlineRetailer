@@ -2,12 +2,10 @@ package dnb.no.reskill.onlineretailer.models;
 
 import javax.persistence.*;
 
-
+//todo add lombok getter/setters
 @Entity
 @Table(name = "Product")
 public class Product {
-
-//    public static final int DUMMY_ID = -1;
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -32,16 +30,13 @@ public class Product {
         this.instock = inStock;
     }
 
-//    public static int getDummyId() {
-//        return DUMMY_ID;
-//    }
 
     public long getInstock() {
         return instock;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.id = id++;
     }
 
     public void setName(String name) {

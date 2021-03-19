@@ -7,9 +7,10 @@ import java.util.Collection;
 public interface ProductService {
 
         void addToStock(Product product);
-        void deleteFromStock(int productId);
-        void updateStock(Product product);
+        boolean deleteFromStock(int productId);
+        boolean updateStock(Product product);
         Product findInStock(int productId);
+        Collection<Product> getAllProducts();
 
 
         double getVat(double price);

@@ -1,4 +1,4 @@
-package dnb.no.reskill.onlineretailer;
+package dnb.no.reskill.onlineretailer.forTesting;
 
 import dnb.no.reskill.onlineretailer.bizlayer.ProductService;
 import dnb.no.reskill.onlineretailer.datalayer.ProductRepository;
@@ -62,6 +62,9 @@ public class Tester {
                 repository.updateProduct(p6);
                 System.out.println(repository.findProduct(p6.getId()));
                 System.out.println("Displaying VAT: "+productService.getVat(p6.getId()));
+
+                System.out.println("\nThe total value of the stock is: "
+                        +productService.getTotalStockValue(repository.getAllProducts()));
 
 
             }

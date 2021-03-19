@@ -1,9 +1,7 @@
 package dnb.no.reskill.onlineretailer.bizlayer;
 
-import com.sun.xml.bind.v2.TODO;
 import dnb.no.reskill.onlineretailer.MyVatBean;
 import dnb.no.reskill.onlineretailer.datalayer.ProductRepository;
-import dnb.no.reskill.onlineretailer.datalayer.ProductRepositoryH2Database;
 import dnb.no.reskill.onlineretailer.models.Product;
 import dnb.no.reskill.onlineretailer.VatConfig;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +15,7 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository repository;
 
+    //todo implement crud repository
     @Autowired
     public ProductServiceImpl(@Qualifier("productRepositoryH2Database") ProductRepository repository){
         this.repository = repository;
@@ -36,20 +35,26 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void deleteFromStock(int productId) {
+    public boolean deleteFromStock(int productId) {
         repository.deleteProduct(productId);
 
+        return false;
     }
 
     @Override
-    public void updateStock(Product product) {
-        repository.updateProduct(product);
+    public boolean updateStock(Product product) {
+        return repository.updateProduct(product);
 
     }
 
     @Override
     public Product findInStock(int productId) {
         return repository.findProduct(productId);
+    }
+
+    @Override
+    public Collection<Product> getAllProducts() {
+        return repository.getAllProducts();
     }
 
     @Override

@@ -1,4 +1,4 @@
-package dnb.no.reskill.onlineretailer;
+package dnb.no.reskill.onlineretailer.forTesting;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
