@@ -22,6 +22,7 @@ public class Controller {
 
 
 
+
     //get one product
     @GetMapping(value = "/products/{id}", produces = {"application/json"})
     public ResponseEntity<Product> getProductById(@PathVariable int id){
@@ -70,6 +71,19 @@ public class Controller {
         else
             return ResponseEntity.ok().build();
     }
+
+
+    @GetMapping(value = "/products", produces = {"application/json"})
+    public ResponseEntity<Product> idInput(@RequestParam int input){
+            Product p =  service.findInStock(input);
+//            if (p==null){
+//                return ResponseEntity.notFound().build();
+//            }
+//            else{
+                return ResponseEntity.ok().body(p);
+//            }
+        }
+
 
 
 

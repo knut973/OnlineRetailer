@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Controller</title>
+
+    <style>
+        body{
+            background-color: aliceblue;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Select an id:</h1>
+<form action="/stock/products" target="iframe" method="get"class="input">
+    <p><input type="int"  name="input" id="userInput"/></p>
+    <p><input type="submit" value=Submit>
+        <input type="reset" value="Reset" /></p>
+
+
+</form>
+<iframe name="iframe" src="/stock/products" width="100%" height="700px"></iframe>
+
+
+</body>
+</html>
