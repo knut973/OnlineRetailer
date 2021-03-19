@@ -73,16 +73,15 @@ public class Controller {
     }
 
 
-    @GetMapping(value = "/products", produces = {"application/json"})
-    public ResponseEntity<Product> idInput(@RequestParam int input){
-            Product p =  service.findInStock(input);
-//            if (p==null){
-//                return ResponseEntity.notFound().build();
-//            }
-//            else{
-                return ResponseEntity.ok().body(p);
-//            }
-        }
+    @GetMapping(value = "/productsResult", produces = {"application/json"})
+    public Product idInput(@RequestParam int input){
+        Product p =  service.findInStock(input);
+        return p;
+    }
+
+//    @GetMapping(value = "/productsResult", produces = {"application/json"})
+// getall
+//
 
 
 

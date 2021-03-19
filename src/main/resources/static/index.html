@@ -13,15 +13,20 @@
 </head>
 <body>
 
-<h1>Select an id:</h1>
-<form action="/stock/products" target="iframe" method="get"class="input">
-    <p><input type="int"  name="input" id="userInput"/></p>
-    <p><input type="submit" value=Submit>
+<h3>Enter id:</h3>
+<form action="/stock/productsResult" target="iframe" method="get"class="input">
+    <p><input type="int" name="input" id="userInput"/></p>
+    <p><input type="submit" value=Search>
         <input type="reset" value="Reset" /></p>
 
-
 </form>
-<iframe name="iframe" src="/stock/products" width="100%" height="700px"></iframe>
+
+<!--<form action="/stock/productsResult" target="iframe" method="get"class="input">-->
+<!--<p><input type="submit" value="See all products in stock" oncli/></p>-->
+<!--</form>-->
+
+
+<iframe name="iframe" src="/stock/productsResult.html" width="40%" height="500px"></iframe>
 
 
 </body>
