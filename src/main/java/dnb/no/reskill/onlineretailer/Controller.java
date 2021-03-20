@@ -1,16 +1,13 @@
 package dnb.no.reskill.onlineretailer;
 
 import dnb.no.reskill.onlineretailer.bizlayer.ProductService;
-import dnb.no.reskill.onlineretailer.datalayer.ProductRepository;
 import dnb.no.reskill.onlineretailer.models.Product;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.Collection;
-import java.util.stream.Collectors;
 
 
 @RestController
@@ -74,14 +71,30 @@ public class Controller {
 
 
     @GetMapping(value = "/productsResult", produces = {"application/json"})
-    public Product idInput(@RequestParam int input){
-        Product p =  service.findInStock(input);
-        return p;
+    public String idInput(@RequestParam int input){
+
+        String p =  service.findInStock(input)
+                .toString();
+
+        String allProd = service.getAllProducts()
+                .stream()
+                .map(c -> c.toString())
+                .reduce("", String::concat);
+
+
+        if (input == 100){
+            return allProd;
+        }
+        else
+            return p;
     }
 
-//    @GetMapping(value = "/productsResult", produces = {"application/json"})
-// getall
-//
+    @GetMapping(value = "/stock/productsResult{}", produces = {"application/json", "application/xml"})
+    public ResponseEntity<Collection<Product>> getAll(){
+
+        Collection<Product> products = service.getAllProducts();
+        return ResponseEntity.ok().body(products);
+    }
 
 
 
