@@ -14,30 +14,26 @@
 <body>
 
     <h3>Enter id:</h3>
-    <form action="/stock/productsResult" target="iframe" method="get" class="input"  id="userInput">
-        <p><input type="int" name="input"/></p>
+    <form action="/stock/productsResult" target="iframe" method="get" class="input">
+        <p><label>
+            <input type="number" name="input" />
+        </label></p>
         <p><input type="submit" value=Search>
             <input type="reset" value="Reset" /></p>
 
-        <p><input type="submit"  value="See all products in stock">
-        </p>
-
-        </p>
-
     </form>
 
-    <!--<form action="/stock/productsResult" target="iframe" method="get"class="input">-->
-    <!--<p>-->
-    <!--<button value="-1" type="button">See all products in stock</button>-->
+    <form action="/stock/productsResult/{getall}" target="iframe" method="get" class="input">
+        <p><input type="submit" value="Show all products"></p>
+    </form>
 
-    </p>
-       <form action="/stock/productsResult{}" target="iframe" method="get">
-       <p><input type="submit" value="See all products in stock">
-       </p>
+    <form action="/stock/productsResult/{getTotalValue}" target="iframe" method="get" class="input">
+        <p><input type="submit" value="Show total value of stock"></p>
+    </form>
 
-    <!--</form>-->
 
-    <iframe name="iframe" src="/stock/productsResult.html" width="40%" height="500px"></iframe>
+
+    <iframe name="iframe" src="/stock/productsResult.html" width="40%" height="400px"></iframe>
 
 </body>
 

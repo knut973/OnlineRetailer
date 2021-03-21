@@ -70,33 +70,28 @@ public class Controller {
     }
 
 
+
+    //methods for testing of index.html
+
+
     @GetMapping(value = "/productsResult", produces = {"application/json"})
-    public String idInput(@RequestParam int input){
+    public Product idInput(@RequestParam int input){
 
-        String p =  service.findInStock(input)
-                .toString();
-
-        String allProd = service.getAllProducts()
-                .stream()
-                .map(c -> c.toString())
-                .reduce("", String::concat);
-
-
-        if (input == 100){
-            return allProd;
-        }
-        else
+        Product p =  service.findInStock(input);
             return p;
     }
 
-    @GetMapping(value = "/stock/productsResult{}", produces = {"application/json", "application/xml"})
-    public ResponseEntity<Collection<Product>> getAll(){
 
+    @GetMapping(value = "/productsResult/{getall}", produces = {"application/json"})
+    public ResponseEntity<Collection<Product>> getAll(){
         Collection<Product> products = service.getAllProducts();
         return ResponseEntity.ok().body(products);
     }
 
-
-
+    @GetMapping(value = "/productsResult/{getTotalValue}", produces = {"application/json"})
+    public ResponseEntity<Double> getTotalValue(){
+        double stockValue = service.getTotalStockValue(service.getAllProducts());
+        return ResponseEntity.ok().body(stockValue);
+    }
 
 }
