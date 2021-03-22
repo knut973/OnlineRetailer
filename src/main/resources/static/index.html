@@ -16,10 +16,16 @@
 </head>
 <body>
 
-    <h3>Enter id to search:</h3>
     <form action="/stock/productsResult" target="iframe" method="get" class="input">
+        Enter id to search:
         <input type="number" name="input">
         <input type="submit" value=Search>
+    </form><br>
+
+    <form action="/stock/productsResult{delete}" target="iframe" class="input">
+        Enter id to delete:
+        <input type="number" name="id">
+        <input type="submit" value=Delete>
     </form><br>
 
 
@@ -33,7 +39,7 @@
     </form>
 
     <h3>Add new product:</h3>
-    <form action="/stock/productsResult{addProd}" target="iframe" method="get" class="input">
+    <form action="/stock/productsResult{addProd}" target="iframe" class="input" method="post">
         <table>
         <p>
             <tr>
@@ -44,7 +50,7 @@
             <tr>
                 <th><input type="text" name="name"> </th>
                 <th><input type="number" name="price"></th>
-                <th><input type="number" name="inStock"></th>
+                <th><input type="number" name="instock"></th>
             </tr>
         </p>
 

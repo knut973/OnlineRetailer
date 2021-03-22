@@ -53,14 +53,16 @@ public class Controller {
 
     //create
     @PostMapping(
-            value="/products",
-            consumes={"application/json","application/xml"},
-            produces={"application/json","application/xml"})
-    public ResponseEntity<Product> insertProduct(@RequestBody Product product) {
+            value="/productsResult{addProd}",
+            consumes={"application/x-www-form-urlencoded"},
+            produces={"application/json"})
+    public ResponseEntity<Product> addProductToStock( Product product) {
+        System.out.println(product);
         service.addToStock(product);
         URI uri = URI.create("/products/" + product.getId());
         return ResponseEntity.created(uri).body(product);
     }
+
 
     @DeleteMapping("/products/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable int id) {
@@ -72,9 +74,6 @@ public class Controller {
 
 
 
-    //methods for testing of index.html
-
-
     @GetMapping(value = "/productsResult", produces = {"application/json"})
     public Product idInput(@RequestParam int input){
         Product p =  service.findInStock(input);
@@ -84,9 +83,7 @@ public class Controller {
 
     @GetMapping(value = "/productsResult/{getall}", produces = {"application/json"})
     public ResponseEntity<Collection<Product>> getAll(){
-        Collection<Product> products = service.getAllProducts()
-                .stream()
-                .collect(Collectors.toList());
+        Collection<Product> products = service.getAllProducts();
 
         return ResponseEntity.ok().body(products);
     }
@@ -98,16 +95,13 @@ public class Controller {
     }
 
 
-
-    @GetMapping(value = "/productsResult{addProd}", produces = {"application/json"})
-    public Product idInput(@RequestParam String name, double price, long inStock){
-
-        Product newProd = new Product(name, price, inStock);
-        service.addToStock(newProd);
-
-        return newProd;
+    @GetMapping("/productsResult{delete}")
+    public ResponseEntity<Void> deleteProdWeb(@RequestParam int id) {
+        if (!service.deleteFromStock(id))
+            return ResponseEntity.notFound().build();
+        else
+            return ResponseEntity.ok().build();
     }
-
 
 
 }

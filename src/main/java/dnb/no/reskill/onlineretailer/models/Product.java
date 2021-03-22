@@ -15,24 +15,28 @@ public class Product {
     private double price;
 
     @Column(name = "instock")
-    private long instock;
+    private long inStock;
 
     public Product(){}
 
-    public Product(String name, double price, long inStock){
-        this(-1, name, price, inStock);
+    public Product(String name, double price, int inStock){
+       // this(-1, name, price, inStock);
+        this.id=id++;
+        this.name=name;
+        this.price=price;
+        this.inStock = inStock;
     }
 
     public Product(int id, String name, double price, long inStock){
         this.id=id;
         this.name=name;
         this.price=price;
-        this.instock = inStock;
+        this.inStock = inStock;
     }
 
 
     public long getInstock() {
-        return instock;
+        return inStock;
     }
 
     public void setId(int id) {
@@ -47,8 +51,8 @@ public class Product {
         this.price = price;
     }
 
-    public void setInstock(long instock) {
-        this.instock = instock;
+    public void setInstock(long inStock) {
+        this.inStock = inStock;
     }
 
     public String getName() {
@@ -79,7 +83,7 @@ public class Product {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
-                ", instock=" + instock +
+                ", instock=" + inStock +
                 '}';
     }
 }
