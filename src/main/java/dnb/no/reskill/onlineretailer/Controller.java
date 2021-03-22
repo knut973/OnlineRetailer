@@ -1,13 +1,16 @@
 package dnb.no.reskill.onlineretailer;
 
 import dnb.no.reskill.onlineretailer.bizlayer.ProductService;
+import dnb.no.reskill.onlineretailer.datalayer.ProductRepository;
 import dnb.no.reskill.onlineretailer.models.Product;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -16,8 +19,6 @@ import java.util.Collection;
 public class Controller {
 
     @Autowired ProductService service;
-
-
 
 
     //get one product
@@ -40,7 +41,7 @@ public class Controller {
         return ResponseEntity.ok().body(products);
         }
 
-    //create product
+    //update product
     @PutMapping(value="/products/{id}", consumes={"application/json","application/xml"})
     public ResponseEntity<Void> updateProduct(@PathVariable int id, @RequestBody Product product) {
         if (!service.updateStock(product))
@@ -76,7 +77,6 @@ public class Controller {
 
     @GetMapping(value = "/productsResult", produces = {"application/json"})
     public Product idInput(@RequestParam int input){
-
         Product p =  service.findInStock(input);
             return p;
     }
@@ -84,7 +84,10 @@ public class Controller {
 
     @GetMapping(value = "/productsResult/{getall}", produces = {"application/json"})
     public ResponseEntity<Collection<Product>> getAll(){
-        Collection<Product> products = service.getAllProducts();
+        Collection<Product> products = service.getAllProducts()
+                .stream()
+                .collect(Collectors.toList());
+
         return ResponseEntity.ok().body(products);
     }
 
@@ -93,5 +96,18 @@ public class Controller {
         double stockValue = service.getTotalStockValue(service.getAllProducts());
         return ResponseEntity.ok().body(stockValue);
     }
+
+
+
+    @GetMapping(value = "/productsResult{addProd}", produces = {"application/json"})
+    public Product idInput(@RequestParam String name, double price, long inStock){
+
+        Product newProd = new Product(name, price, inStock);
+        service.addToStock(newProd);
+
+        return newProd;
+    }
+
+
 
 }

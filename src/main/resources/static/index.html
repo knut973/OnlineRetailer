@@ -9,31 +9,56 @@
             background-color: aliceblue;
             color: black;
         }
+
+
     </style>
+    <script src="onlineRetailer.js"></script>
 </head>
 <body>
 
-    <h3>Enter id:</h3>
+    <h3>Enter id to search:</h3>
     <form action="/stock/productsResult" target="iframe" method="get" class="input">
-        <p><label>
-            <input type="number" name="input" />
-        </label></p>
-        <p><input type="submit" value=Search>
-            <input type="reset" value="Reset" /></p>
+        <input type="number" name="input">
+        <input type="submit" value=Search>
+    </form><br>
 
-    </form>
 
-    <form action="/stock/productsResult/{getall}" target="iframe" method="get" class="input">
+
+    <form action="/stock/productsResult/{getall}" target="iframe2" method="get" class="input">
         <p><input type="submit" value="Show all products"></p>
     </form>
 
     <form action="/stock/productsResult/{getTotalValue}" target="iframe" method="get" class="input">
-        <p><input type="submit" value="Show total value of stock"></p>
+        <input type="submit" value="Show total value of products in stock">
     </form>
 
+    <h3>Add new product:</h3>
+    <form action="/stock/productsResult{addProd}" target="iframe" method="get" class="input">
+        <table>
+        <p>
+            <tr>
+                <th>Name: </th>
+                <th>Price: </th>
+                <th>Number in stock: </th>
+            </tr>
+            <tr>
+                <th><input type="text" name="name"> </th>
+                <th><input type="number" name="price"></th>
+                <th><input type="number" name="inStock"></th>
+            </tr>
+        </p>
+
+        </table>
+        <p><input type="submit" value="Add to inventory">
+        <input type="reset"></p>
+
+    </form><br>
 
 
-    <iframe name="iframe" src="/stock/productsResult.html" width="40%" height="400px"></iframe>
+    <iframe name="iframe" src="/stock/productsResult.html" width="500px" height="400px"></iframe>
+<!--    <div style="position:absolute; top:0; right:0;">-->
+    <iframe name="iframe2" src="/stock/productsResult.html" width="500px" height="400px"></iframe>
+<!--    </div>-->
 
 </body>
 

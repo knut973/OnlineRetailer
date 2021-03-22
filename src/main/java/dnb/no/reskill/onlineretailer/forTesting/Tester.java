@@ -25,13 +25,13 @@ public class Tester {
             try {
 
                 //add new product
-                System.out.println("Adding toy car");
+                System.out.println("Adding toy car (no id in constructor");
                 Product p = new Product("Toycar", 99, 50);
                 repository.addProduct(p);
                 System.out.println("Id of " +p.getName() + ": " +p.getId());
 
 
-                System.out.println("Adding real car, with id -1");
+                System.out.println("Adding real car(with id -1 in constructor");
                 Product p10 = new Product(-1, "Real car", 12000, 2);
                 repository.addProduct(p10);
                 System.out.println("Id of " +p10.getName() + ": " +p10.getId());
@@ -45,8 +45,9 @@ public class Tester {
                 printAllProducts();
 
                 //Delete and print again
-                repository.deleteProduct(6);
-                System.out.println("\nProduct deleted");
+                int deleteId = 6;
+                repository.deleteProduct(deleteId);
+                System.out.println("\nDeleted product with id: " +deleteId);
                 printAllProducts();
 
                 //insert new product

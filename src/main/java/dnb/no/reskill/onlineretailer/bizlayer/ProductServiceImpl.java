@@ -25,6 +25,9 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private VatConfig vatConfig;
 
+//    @Autowired
+//    private VatSetup vatSetup;
+
 //TODO fix vatsetup, autowire to bean
 
 
@@ -57,9 +60,16 @@ public class ProductServiceImpl implements ProductService {
         return repository.getAllProducts();
     }
 
+/*
     @Override
     public double getVat(double price) {
+        return vatSetup.getVatPercentageByPrice(price);
 
+    }
+*/
+
+    @Override
+    public double getVat(double price) {
 
        if (price < 100){
            MyVatBean a = vatConfig.vatBean25();
@@ -75,9 +85,9 @@ public class ProductServiceImpl implements ProductService {
            MyVatBean c = vatConfig.vatBean50();
            return price * c.getPercent();
        }
-
-
 }
+
+
     @Override
     public void adjustPriceByPercentage(int productId, double byPercent) {
         Product prod = repository.findProduct(productId);
