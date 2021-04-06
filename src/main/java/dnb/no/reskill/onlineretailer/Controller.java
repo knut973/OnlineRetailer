@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Array;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -35,11 +37,20 @@ public class Controller {
 
 
     //get all products
-    @GetMapping(value = "/products", produces = {"application/json", "application/xml"})
+    @GetMapping(value = "/products", produces = {"application/json"})  //, "application/xml"
     public ResponseEntity<Collection<Product>> getAllProducts(){
         Collection<Product> products = service.getAllProducts();
+
         return ResponseEntity.ok().body(products);
         }
+
+
+//    //get all products
+//    @GetMapping(value = "/products", produces = {"application/json"})  //, "application/xml"
+//    public ResponseEntity<Collection<Product>> getAllProducts(){
+//        Collection<Product> products = service.getAllProducts();
+//        return ResponseEntity.ok().body(products);
+//    }
 
     //update product
     @PutMapping(value="/products/{id}", consumes={"application/json","application/xml"})
@@ -53,14 +64,14 @@ public class Controller {
 
     //create
     @PostMapping(
-            value="/productsResult{addProd}",
-            consumes={"application/x-www-form-urlencoded"},
+            value="/products",
+            consumes={"application/json"},  //,"application/x-www-form-urlencoded"},
             produces={"application/json"})
-    public ResponseEntity<Product> addProductToStock( Product product) {
+    public void addProductToStock(@RequestBody Product product) {
         System.out.println(product);
         service.addToStock(product);
         URI uri = URI.create("/products/" + product.getId());
-        return ResponseEntity.created(uri).body(product);
+       // return ResponseEntity.created(uri).body(product);
     }
 
 
